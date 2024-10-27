@@ -1,0 +1,90 @@
+<mat-toolbar class="bg-white border-b border-gray-200">
+  <div class="container mx-auto h-16">
+    <div class="flex items-center justify-between h-full">
+      <!-- Logo -->
+      <a routerLink="/" class="flex items-center gap-2">
+        <mat-icon class="text-primary-600">handyman</mat-icon>
+        <span class="text-xl font-semibold text-gray-900">Chambitas</span>
+      </a>
+
+      <!-- Navegación central - Solo Desktop -->
+      <nav class="hidden md:flex flex-1 justify-center mx-8">
+        <a routerLink="/search" 
+           class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 rounded-md transition-colors duration-200">
+          <mat-icon>search</mat-icon>
+          Buscar Profesionales
+        </a>
+      </nav>
+
+      <!-- Botones de autenticación - Solo Desktop -->
+      <div class="hidden md:flex items-center gap-4">
+        @if (isLoggedIn$ | async) {
+          <button mat-flat-button color="warn" (click)="logout()" class="h-9">
+            <mat-icon>logout</mat-icon>
+            <span class="ml-1">Cerrar Sesión</span>
+          </button>
+        } @else {
+          <a routerLink="/auth/login" 
+             mat-stroked-button 
+             color="primary"
+             class="h-9">
+            <mat-icon>person</mat-icon>
+            <span class="ml-1">Iniciar Sesión</span>
+          </a>
+          <a routerLink="/auth/register" 
+             mat-flat-button 
+             color="primary"
+             class="h-9">
+            <mat-icon>person_add</mat-icon>
+            <span class="ml-1">Registrarse</span>
+          </a>
+        }
+      </div>
+
+      <!-- Botón menú móvil - Solo Mobile -->
+      <button mat-icon-button 
+              class="block md:hidden mobile-menu-button" 
+              (click)="toggleMobileMenu()">
+        <mat-icon>{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+
+<!-- Menú móvil desplegable -->
+@if (isMobileMenuOpen) {
+  <div class="fixed inset-0 z-50 md:hidden">
+    <div class="fixed inset-0 bg-black/30 backdrop-blur-sm" (click)="toggleMobileMenu()"></div>
+    <div class="fixed top-16 inset-x-0 bg-white shadow-lg animate-slide-down">
+      <div class="p-4 space-y-3">
+        <a routerLink="/search" 
+           class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+           (click)="toggleMobileMenu()">
+          <mat-icon class="mr-3">search</mat-icon>
+          <span class="text-sm font-medium">Buscar Profesionales</span>
+        </a>
+
+        @if (isLoggedIn$ | async) {
+          <button (click)="logout(); toggleMobileMenu()" 
+                  class="flex items-center w-full px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+            <mat-icon class="mr-3">logout</mat-icon>
+            <span class="text-sm font-medium">Cerrar Sesión</span>
+          </button>
+        } @else {
+          <a routerLink="/auth/login" 
+             class="flex items-center px-4 py-3 text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+             (click)="toggleMobileMenu()">
+            <mat-icon class="mr-3">person</mat-icon>
+            <span class="text-sm font-medium">Iniciar Sesión</span>
+          </a>
+          <a routerLink="/auth/register" 
+             class="flex items-center px-4 py-3 text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+             (click)="toggleMobileMenu()">
+            <mat-icon class="mr-3">person_add</mat-icon>
+            <span class="text-sm font-medium">Registrarse</span>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+}

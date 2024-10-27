@@ -1,0 +1,7 @@
+.mobile-menu-button {
+  display: block;  // Asegura que sea visible por defecto
+  
+  @media (min-width: 768px) {
+    display: none !important;  // Usa !important para sobrescribir estilos de Material
+  }
+}

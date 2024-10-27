@@ -1,0 +1,74 @@
+<section class="search-container">
+  <div class="search-header">
+    <h1>Encuentra al Profesional Ideal</h1>
+    <p>Explora nuestra red de expertos verificados</p>
+  </div>
+
+  <div class="search-filters">
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="onSearchInputChange()"
+        placeholder="Buscar por nombre, profesión o descripción...">
+      <button 
+        *ngIf="searchTerm || selectedCategory || selectedLocation"
+        class="reset-button" 
+        (click)="resetFilters()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="filter-options">
+        <select [(ngModel)]="selectedCategory" (change)="onSearch()">
+        <option value="">Todas las categorías</option>
+        <option *ngFor="let category of categories" [value]="category.id">
+            {{category.name}}
+        </option>
+        </select>
+
+        <select [(ngModel)]="selectedLocation" (change)="onSearch()">
+        <option value="">Todas las ubicaciones</option>
+        <option *ngFor="let location of locations" [value]="location.id">
+            {{location.name}}
+        </option>
+        </select>
+    </div>
+  </div>
+
+  <div class="professionals-grid">
+    <div class="professional-card" *ngFor="let professional of professionals">
+      <div class="professional-header">
+        <img [src]="professional.imageUrl" [alt]="professional.name">
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <span>{{professional.rating}}</span>
+        </div>
+      </div>
+      <div class="professional-info">
+        <h3>{{professional.name}}</h3>
+        <p class="profession">{{professional.profession}}</p>
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>{{professional.location}}</span>
+        </div>
+        <p class="description">{{professional.description}}</p>
+      </div>
+      <div class="professional-footer">
+        <button class="btn-contact">
+          <i class="fas fa-envelope"></i> Contactar
+        </button>
+        <button class="btn-profile">Ver Perfil</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje cuando no hay resultados -->
+  <div *ngIf="professionals.length === 0" class="no-results">
+    <i class="fas fa-search"></i>
+    <h3>No se encontraron resultados</h3>
+    <p>Intenta con otros términos de búsqueda o filtros</p>
+    <button class="btn-reset" (click)="resetFilters()">Resetear filtros</button>
+  </div>
+</section>

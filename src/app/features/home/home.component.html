@@ -1,0 +1,60 @@
+<div class="home-container">
+  <header class="hero-section">
+    <div class="hero-content">
+      <h1>Conectamos Profesionales Confiables Contigo</h1>
+      <p class="hero-subtitle">Encuentra expertos certificados para todos tus proyectos</p>
+      <div class="cta-buttons">
+        <button class="btn-primary" routerLink="/search">
+          <i class="fas fa-search"></i> Buscar Profesionales
+        </button>
+        <button class="btn-secondary" routerLink="/auth/register">
+          <i class="fas fa-user-plus"></i> Ofrecer Mis Servicios
+        </button>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <div class="arrow"></div>
+    </div>
+  </header>
+
+  <section class="services-section">
+    <h2>Servicios Disponibles</h2>
+    <div class="services-grid">
+      <div class="service-card" *ngFor="let service of mainServices">
+        <i class="{{service.icon}}"></i>
+        <h3>{{service.name}}</h3>
+        <p>{{service.description}}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <h2>¿Por qué elegirnos?</h2>
+    <div class="features-grid">
+      <div class="feature-item">
+        <i class="fas fa-certificate"></i>
+        <h3>Profesionales Verificados</h3>
+        <p>Todos nuestros expertos están certificados y verificados</p>
+      </div>
+      <div class="feature-item">
+        <i class="fas fa-star"></i>
+        <h3>Calificaciones Reales</h3>
+        <p>Opiniones verificadas de clientes anteriores</p>
+      </div>
+      <div class="feature-item">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Trabajo Garantizado</h3>
+        <p>Satisfacción garantizada en cada servicio</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>¿Eres un Profesional?</h2>
+    <p>Únete a nuestra plataforma y comienza a crecer tu negocio</p>
+    <button class="btn-primary" routerLink="/auth/register">Registrarme como Profesional</button>
+  </section>
+</div>

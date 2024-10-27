@@ -1,0 +1,129 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 to-purple-100 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8 bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 animate-fade-in">
+        Registro
+      </h2>
+    </div>
+    
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
+      <div class="space-y-4">
+        <!-- Nombre -->
+        <div class="transform transition-all duration-300 hover:translate-x-1">
+          <label for="name" class="block text-sm font-medium text-gray-700">
+            Nombre
+          </label>
+          <div class="mt-1">
+            <input 
+              id="name" 
+              type="text" 
+              formControlName="name"
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 
+                     focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+                     transition-all duration-300 ease-in-out
+                     hover:border-indigo-300"
+              placeholder="Ingresa tu nombre">
+          </div>
+          @if (registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched) {
+            <p class="mt-2 text-sm text-red-600 animate-shake">El nombre es requerido</p>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="transform transition-all duration-300 hover:translate-x-1">
+          <label for="email" class="block text-sm font-medium text-gray-700">
+            Correo electrónico
+          </label>
+          <div class="mt-1">
+            <input 
+              id="email" 
+              type="email" 
+              formControlName="email"
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 
+                     focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+                     transition-all duration-300 ease-in-out
+                     hover:border-indigo-300"
+              placeholder="ejemplo@correo.com">
+          </div>
+          @if (registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched) {
+            <p class="mt-2 text-sm text-red-600 animate-shake">El correo electrónico es requerido</p>
+          }
+          @if (registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched) {
+            <p class="mt-2 text-sm text-red-600 animate-shake">Ingresa un correo electrónico válido</p>
+          }
+        </div>
+
+        <!-- Contraseña -->
+        <div class="transform transition-all duration-300 hover:translate-x-1">
+          <label for="password" class="block text-sm font-medium text-gray-700">
+            Contraseña
+          </label>
+          <div class="mt-1">
+            <input 
+              id="password" 
+              type="password" 
+              formControlName="password"
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 
+                     focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+                     transition-all duration-300 ease-in-out
+                     hover:border-indigo-300"
+              placeholder="********">
+          </div>
+          @if (registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched) {
+            <p class="mt-2 text-sm text-red-600 animate-shake">La contraseña es requerida</p>
+          }
+          @if (registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched) {
+            <p class="mt-2 text-sm text-red-600 animate-shake">La contraseña debe tener al menos 6 caracteres</p>
+          }
+        </div>
+
+        <!-- Confirmar Contraseña -->
+        <div class="transform transition-all duration-300 hover:translate-x-1">
+          <label for="confirmPassword" class="block text-sm font-medium text-gray-700">
+            Confirmar Contraseña
+          </label>
+          <div class="mt-1">
+            <input 
+              id="confirmPassword" 
+              type="password" 
+              formControlName="confirmPassword"
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 
+                     focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+                     transition-all duration-300 ease-in-out
+                     hover:border-indigo-300"
+              placeholder="********">
+          </div>
+          @if (registerForm.get('confirmPassword')?.errors?.['required'] && registerForm.get('confirmPassword')?.touched) {
+            <p class="mt-2 text-sm text-red-600 animate-shake">Confirma tu contraseña</p>
+          }
+          @if (registerForm.get('confirmPassword')?.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched) {
+            <p class="mt-2 text-sm text-red-600 animate-shake">Las contraseñas no coinciden</p>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button 
+          type="submit" 
+          [disabled]="registerForm.invalid"
+          [ngClass]="{
+            'bg-indigo-600 hover:bg-indigo-700 hover:scale-105': !registerForm.invalid,
+            'bg-gray-400 cursor-not-allowed': registerForm.invalid
+          }"
+          class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white 
+                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                 transition-all duration-300 ease-in-out
+                 hover:shadow-lg">
+          Registrarse
+        </button>
+      </div>
+
+      <div class="text-sm text-center">
+        <a [routerLink]="['/auth/login']" 
+           class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-300">
+          ¿Ya tienes una cuenta? Inicia sesión
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

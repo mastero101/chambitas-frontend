@@ -1,0 +1,56 @@
+:host ::ng-deep {
+  .mat-expansion-panel {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .mat-expansion-panel-header {
+    padding: 12px 0;
+    height: auto !important;
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0 0 16px 0;
+  }
+
+  .mat-expansion-indicator::after {
+    color: white;
+  }
+
+  .mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 2rem 0;
+}
+
+// Si tienes un contenedor principal en app.component.html, agregar esto:
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}

@@ -1,0 +1,539 @@
+.search-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.search-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  
+  h1 {
+    font-size: 2.8rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    animation: slideInDown 0.8s ease-out;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    
+    &::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #3498db, #2980b9);
+      margin: 1rem auto;
+      border-radius: 2px;
+      animation: expandWidth 0.8s ease-out;
+    }
+  }
+  
+  p {
+    color: #666;
+    font-size: 1.3rem;
+    animation: fadeIn 0.8s ease-out 0.3s both;
+  }
+}
+
+.search-filters {
+  margin-bottom: 3rem;
+  animation: slideInUp 0.8s ease-out;
+  
+  .search-bar {
+    position: relative;
+    margin-bottom: 1.5rem;
+    
+    i {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      transition: all 0.3s ease;
+    }
+    
+    input {
+      width: 100%;
+      padding: 1.2rem 1.2rem 1.2rem 3.2rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      background: white;
+      
+      &:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 0 4px rgba(52,152,219,0.1);
+        
+        & + i {
+          color: #3498db;
+          transform: translateY(-50%) scale(1.1);
+        }
+      }
+    }
+    
+    .reset-button {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: rgba(0,0,0,0.1);
+        color: #e74c3c;
+      }
+    }
+  }
+  
+  .filter-options {
+    display: flex;
+    gap: 1rem;
+    
+    select {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 25px;
+      font-size: 1rem;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23666' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      
+      &:hover {
+        border-color: #3498db;
+        background-color: rgba(52,152,219,0.02);
+      }
+      
+      &:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 0 4px rgba(52,152,219,0.1);
+      }
+      
+      optgroup {
+        font-weight: 600;
+        color: #2c3e50;
+      }
+      
+      option {
+        padding: 0.5rem;
+      }
+    }
+  }
+}
+
+.professionals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.professional-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+  
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    
+    .professional-header img {
+      transform: scale(1.1);
+    }
+    
+    .professional-info h3 {
+      color: #3498db;
+    }
+  }
+  
+  .professional-header {
+    position: relative;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .rating {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      background: rgba(255,255,255,0.95);
+      padding: 0.6rem 1rem;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      backdrop-filter: blur(4px);
+      transform: translateY(-5px);
+      animation: floatIn 0.5s ease-out forwards;
+      
+      i {
+        color: #f1c40f;
+        animation: starShine 3s infinite;
+        position: relative;
+        
+        // Efecto de brillo
+        &::after {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          background: radial-gradient(circle at center, rgba(241,196,15,0.4) 0%, transparent 70%);
+          border-radius: 50%;
+          z-index: -1;
+          animation: glowPulse 2s infinite;
+        }
+      }
+      
+      span {
+        font-weight: 600;
+        color: #2c3e50;
+        animation: numberPop 0.5s ease-out;
+      }
+      
+      &:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        
+        i {
+          animation: starBurst 0.5s ease-out;
+        }
+      }
+    }
+  }
+  
+  .professional-info {
+    padding: 1.8rem;
+    
+    h3 {
+      font-size: 1.4rem;
+      color: #2c3e50;
+      margin-bottom: 0.8rem;
+      transition: color 0.3s ease;
+    }
+    
+    .profession {
+      color: #3498db;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+    }
+    
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #666;
+      margin-bottom: 1rem;
+      
+      i {
+        color: #e74c3c;
+        animation: bounce 1s infinite;
+      }
+    }
+    
+    .description {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  }
+  
+  .professional-footer {
+    padding: 0 1.8rem 1.8rem;
+    display: flex;
+    gap: 1rem;
+    
+    button {
+      flex: 1;
+      padding: 1rem;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+      }
+      
+      &.btn-contact {
+        background: #3498db;
+        color: white;
+        border: none;
+        
+        &:hover {
+          background: #2980b9;
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(52,152,219,0.4);
+          
+          &::before {
+            width: 300px;
+            height: 300px;
+          }
+          
+          i {
+            transform: rotate(15deg) scale(1.2);
+          }
+        }
+        
+        i {
+          margin-right: 8px;
+          transition: transform 0.3s ease;
+        }
+      }
+      
+      &.btn-profile {
+        background: transparent;
+        color: #3498db;
+        border: 2px solid #3498db;
+        
+        &:hover {
+          background: rgba(52,152,219,0.1);
+          transform: translateY(-2px);
+          
+          &::before {
+            width: 300px;
+            height: 300px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animaciones
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 100px; }
+}
+
+@keyframes starPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Aplicar delays a las cards
+.professional-card {
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+// Mejoras responsive
+@media (max-width: 768px) {
+  .search-header h1 {
+    font-size: 2rem;
+  }
+  
+  .filter-options {
+    flex-direction: column;
+  }
+  
+  .professional-card {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+}
+
+// Nuevas animaciones para la estrella
+@keyframes starShine {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.1) rotate(-5deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes starBurst {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.4) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes numberPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  background: #f8f9fa;
+  border-radius: 15px;
+  margin: 2rem 0;
+  
+  i {
+    font-size: 3rem;
+    color: #95a5a6;
+    margin-bottom: 1rem;
+  }
+  
+  h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-reset {
+    padding: 0.8rem 2rem;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Animación para los resultados filtrados
+.professionals-grid {
+  .professional-card {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+}

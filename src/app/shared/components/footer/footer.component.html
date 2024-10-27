@@ -1,0 +1,207 @@
+<footer class="bg-gray-900 text-gray-300">
+  <div class="container mx-auto px-4 py-6 md:py-6">
+    <!-- Versión Mobile -->
+    <div class="md:hidden space-y-2">
+      <!-- Información de la empresa -->
+      <div class="border-b border-gray-800">
+        <button 
+          (click)="toggleSection('company')" 
+          class="w-full py-3 flex items-center justify-between text-white">
+          <span class="flex items-center">
+            <mat-icon class="mr-2 text-sm">business</mat-icon>
+            Chambitas
+          </span>
+          <mat-icon>{{ isActive('company') ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+        <div *ngIf="isActive('company')" class="pb-3 space-y-2">
+          <p class="text-xs">Dedicados a proporcionar soluciones innovadoras para profesionales y empresas.</p>
+          <div class="space-y-1">
+            <p class="text-xs flex items-center">
+              <mat-icon class="mr-2 text-sm">location_on</mat-icon>
+              Dirección de la empresa
+            </p>
+            <p class="text-xs flex items-center">
+              <mat-icon class="mr-2 text-sm">phone</mat-icon>
+              +34 123 456 789
+            </p>
+            <p class="text-xs flex items-center">
+              <mat-icon class="mr-2 text-sm">email</mat-icon>
+              contacto&#64;chambitas.com
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enlaces -->
+      <div class="border-b border-gray-800">
+        <button 
+          (click)="toggleSection('links')" 
+          class="w-full py-3 flex items-center justify-between text-white">
+          <span class="flex items-center">
+            <mat-icon class="mr-2 text-sm">link</mat-icon>
+            Enlaces
+          </span>
+          <mat-icon>{{ isActive('links') ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+        <div *ngIf="isActive('links')" class="pb-3">
+          <ul class="space-y-1 pl-6">
+            <li>
+              <a routerLink="/" class="text-xs hover:text-white transition-colors flex items-center">
+                <mat-icon class="mr-2 text-sm">home</mat-icon>
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a routerLink="/about" class="text-xs hover:text-white transition-colors flex items-center">
+                <mat-icon class="mr-2 text-sm">info</mat-icon>
+                Sobre Nosotros
+              </a>
+            </li>
+            <li>
+              <a routerLink="/services" class="text-xs hover:text-white transition-colors flex items-center">
+                <mat-icon class="mr-2 text-sm">build</mat-icon>
+                Servicios
+              </a>
+            </li>
+            <li>
+              <a routerLink="/contact" class="text-xs hover:text-white transition-colors flex items-center">
+                <mat-icon class="mr-2 text-sm">contact_mail</mat-icon>
+                Contacto
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div class="border-b border-gray-800">
+        <button 
+          (click)="toggleSection('legal')" 
+          class="w-full py-3 flex items-center justify-between text-white">
+          <span class="flex items-center">
+            <mat-icon class="mr-2 text-sm">gavel</mat-icon>
+            Legal
+          </span>
+          <mat-icon>{{ isActive('legal') ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+        <div *ngIf="isActive('legal')" class="pb-3">
+          <ul class="space-y-1 pl-6">
+            <li>
+              <a routerLink="/privacy" class="text-xs hover:text-white transition-colors flex items-center">
+                <mat-icon class="mr-2 text-sm">security</mat-icon>
+                Política de Privacidad
+              </a>
+            </li>
+            <li>
+              <a routerLink="/terms" class="text-xs hover:text-white transition-colors flex items-center">
+                <mat-icon class="mr-2 text-sm">description</mat-icon>
+                Términos y Condiciones
+              </a>
+            </li>
+            <li>
+              <a routerLink="/cookies" class="text-xs hover:text-white transition-colors flex items-center">
+                <mat-icon class="mr-2 text-sm">cookie</mat-icon>
+                Política de Cookies
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Versión Desktop -->
+    <div class="hidden md:grid grid-cols-3 gap-6">
+      <!-- Información de la empresa -->
+      <div class="space-y-2">
+        <h3 class="text-white text-sm font-semibold flex items-center">
+          <mat-icon class="mr-2 text-sm">business</mat-icon>
+          Chambitas
+        </h3>
+        <p class="text-xs">
+          Dedicados a proporcionar soluciones innovadoras para profesionales y empresas.
+        </p>
+        <div class="space-y-1">
+          <p class="text-xs flex items-center">
+            <mat-icon class="mr-2 text-sm">location_on</mat-icon>
+            Dirección de la empresa
+          </p>
+          <p class="text-xs flex items-center">
+            <mat-icon class="mr-2 text-sm">phone</mat-icon>
+            +34 123 456 789
+          </p>
+          <p class="text-xs flex items-center">
+            <mat-icon class="mr-2 text-sm">email</mat-icon>
+            contacto&#64;chambitas.com
+          </p>
+        </div>
+      </div>
+
+      <!-- Enlaces -->
+      <div class="space-y-2">
+        <h3 class="text-white text-sm font-semibold flex items-center">
+          <mat-icon class="mr-2 text-sm">link</mat-icon>
+          Enlaces
+        </h3>
+        <ul class="space-y-1">
+          <li>
+            <a routerLink="/" class="text-xs hover:text-white transition-colors flex items-center">
+              <mat-icon class="mr-2 text-sm">home</mat-icon>
+              Inicio
+            </a>
+          </li>
+          <li>
+            <a routerLink="/about" class="text-xs hover:text-white transition-colors flex items-center">
+              <mat-icon class="mr-2 text-sm">info</mat-icon>
+              Sobre Nosotros
+            </a>
+          </li>
+          <li>
+            <a routerLink="/services" class="text-xs hover:text-white transition-colors flex items-center">
+              <mat-icon class="mr-2 text-sm">build</mat-icon>
+              Servicios
+            </a>
+          </li>
+          <li>
+            <a routerLink="/contact" class="text-xs hover:text-white transition-colors flex items-center">
+              <mat-icon class="mr-2 text-sm">contact_mail</mat-icon>
+              Contacto
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="space-y-2">
+        <h3 class="text-white text-sm font-semibold flex items-center">
+          <mat-icon class="mr-2 text-sm">gavel</mat-icon>
+          Legal
+        </h3>
+        <ul class="space-y-1">
+          <li>
+            <a routerLink="/privacy" class="text-xs hover:text-white transition-colors flex items-center">
+              <mat-icon class="mr-2 text-sm">security</mat-icon>
+              Política de Privacidad
+            </a>
+          </li>
+          <li>
+            <a routerLink="/terms" class="text-xs hover:text-white transition-colors flex items-center">
+              <mat-icon class="mr-2 text-sm">description</mat-icon>
+              Términos y Condiciones
+            </a>
+          </li>
+          <li>
+            <a routerLink="/cookies" class="text-xs hover:text-white transition-colors flex items-center">
+              <mat-icon class="mr-2 text-sm">cookie</mat-icon>
+              Política de Cookies
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-t border-gray-800 text-xs text-center">
+      <p>&copy; {{ currentYear }} Chambitas. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
