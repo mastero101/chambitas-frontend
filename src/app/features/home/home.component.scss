@@ -1,7 +1,6 @@
 .home-container {
   max-width: 100%;
-  margin: 0 auto;
-  padding: 0 1rem;
+
 }
 
 .hero-section { 
@@ -130,6 +129,7 @@
 .services-section {
   padding: 6rem 0;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  width: 100%; // Añadir width 100%
   
   h2 {
     text-align: center;
@@ -157,8 +157,9 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2.5rem;
   padding: 0 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
+  width: 100%; // Añadir width 100%
+  max-width: none; // Eliminar el max-width
+  margin: 0; // Eliminar los márgenes
 }
 
 .service-card {
@@ -226,6 +227,7 @@
 .features-section {
   background: linear-gradient(to bottom, #ffffff, #f8f9fa);
   padding: 6rem 0;
+  width: 100%; // Añadir width 100%
   
   h2 {
     text-align: center;
@@ -251,9 +253,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: none; // Eliminar el max-width
+  margin: 0; // Eliminar los márgenes
   padding: 0 2rem;
+  width: 100%; // Añadir width 100%
 }
 
 .feature-item {
@@ -296,6 +299,7 @@
 .cta-section {
   text-align: center;
   padding: 4rem 0;
+  width: 100%; // Añadir width 100%
   background: linear-gradient(135deg, rgba(52,152,219,0.9) 0%, rgba(41,128,185,0.9) 100%),
   url('../../../assets/images/aleksander-trabajando-en-la-obra-1.r_d.539-296-9990.webp') center/cover;;
   color: white;
