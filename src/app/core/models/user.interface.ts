@@ -1,17 +1,32 @@
 import { Certification } from "./certification.interface";
 import { Service } from "./service.interface";
 
-export interface User {
+// Interfaz base para usuarios
+export interface BaseUser {
   id: string;
-  email: string;
-  role: 'client' | 'professional';
-  firstName: string;
+  name: string;
   lastName: string;
-  createdAt: Date;
+  email: string;
+  phone: string;
+  avatar: string;
+  memberSince: string;
+  role: 'client' | 'professional';
 }
 
-export interface Professional extends User {
-  description?: string;
+// Interfaz específica para clientes
+export interface User extends BaseUser {
+  role: 'client';
+  location: string;
+  totalServices: number;
+  completedServices: number;
+  activeServices: number;
+}
+
+// Interfaz específica para profesionales
+export interface Professional extends BaseUser {
+  role: 'professional';
+  profession: string;
+  description: string;
   services: Service[];
   certifications: Certification[];
   rating: number;

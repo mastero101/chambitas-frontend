@@ -1,1 +1,197 @@
-<p>profile works!</p>
+<div class="container mx-auto px-4 py-8" *ngIf="professional">
+  <!-- Back Button -->
+  <button 
+    (click)="goBack()" 
+    class="mb-6 flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors duration-300">
+    <i class="fas fa-arrow-left"></i>
+    <span>Volver a la búsqueda</span>
+  </button>
+
+  <!-- Header Section -->
+  <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+    <div class="flex flex-col md:flex-row items-center gap-6">
+      <div class="relative">
+        <img 
+          [src]="professional.imageUrl" 
+          [alt]="professional.name"
+          class="w-40 h-40 rounded-full object-cover border-4 border-blue-500 shadow-lg">
+        <div class="absolute -bottom-2 right-2 bg-yellow-400 text-white px-3 py-1 rounded-full text-sm font-bold shadow-md">
+          <i class="fas fa-star mr-1"></i>
+          {{professional.rating}}
+        </div>
+      </div>
+      
+      <div class="text-center md:text-left">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">
+          {{professional.name}} {{professional.lastName}}
+        </h1>
+        <p class="text-xl text-blue-600 font-semibold">{{professional.profession}}</p>
+        <p class="text-gray-600 flex items-center justify-center md:justify-start mt-2">
+          <i class="fas fa-map-marker-alt mr-2"></i>
+          {{professional.location}}
+        </p>
+      </div>
+    </div>
+
+    <!-- Descripción -->
+    <div class="mt-8">
+      <h2 class="text-xl font-semibold mb-3 flex items-center">
+        <i class="fas fa-user-circle mr-2 text-blue-500"></i>
+        Acerca de
+      </h2>
+      <p class="text-gray-700 leading-relaxed">{{professional.description}}</p>
+    </div>
+
+    <!-- Información de contacto -->
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-gray-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold mb-3 flex items-center">
+          <i class="fas fa-envelope mr-2 text-blue-500"></i>
+          Contacto
+        </h2>
+        <div class="space-y-4">
+          <!-- Información de contacto -->
+          <div class="space-y-2">
+            <p class="flex items-center text-gray-700">
+              <i class="fas fa-envelope w-6 text-blue-500"></i>
+              {{professional.email}}
+            </p>
+          </div>
+          
+          <!-- Botones de contacto -->
+          <div class="flex flex-col gap-2">
+            <button 
+              (click)="iniciarChat()"
+              class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300">
+              <i class="fas fa-comments"></i>
+              Chatear ahora
+            </button>
+            
+            <button 
+              (click)="dejarMensaje()"
+              class="w-full border border-blue-500 text-blue-500 hover:bg-blue-50 py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300">
+              <i class="fas fa-envelope"></i>
+              Agendar Cita
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Habilidades -->
+      <div class="bg-gray-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold mb-3 flex items-center">
+          <i class="fas fa-tools mr-2 text-blue-500"></i>
+          Habilidades
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          <span *ngFor="let skill of professional.skills" 
+                class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+            {{skill}}
+          </span>
+        </div>
+      </div>
+
+      <!-- Después de la sección de habilidades y antes de experiencia -->
+      <div class="mt-8">
+        <h2 class="text-xl font-semibold mb-4 flex items-center">
+          <i class="fas fa-certificate mr-2 text-blue-500"></i>
+          Certificaciones
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div *ngFor="let cert of professional.certifications" 
+               class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-300">
+            <div class="flex items-start gap-4">
+              <div *ngIf="cert.imageUrl" class="flex-shrink-0">
+                <img [src]="cert.imageUrl" 
+                     [alt]="cert.name"
+                     class="w-16 h-16 object-contain">
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg text-blue-600">{{cert.name}}</h3>
+                <p class="text-gray-600">{{cert.institution}}</p>
+                <p class="text-sm text-gray-500">{{cert.year}}</p>
+                <p *ngIf="cert.description" class="mt-2 text-gray-700">{{cert.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experiencia -->
+      <div class="mt-8">
+        <h2 class="text-xl font-semibold mb-4 flex items-center">
+          <i class="fas fa-briefcase mr-2 text-blue-500"></i>
+          Experiencia Profesional
+        </h2>
+        <div class="space-y-4">
+          <div *ngFor="let exp of professional.experience" 
+               class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-lg text-blue-600">{{exp.position}}</h3>
+            <p class="text-gray-600">{{exp.company}}</p>
+            <p class="text-sm text-gray-500">{{exp.period}}</p>
+            <p class="mt-2 text-gray-700">{{exp.description}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reseñas y Calificaciones -->
+      <div class="mt-8">
+        <h2 class="text-xl font-semibold mb-4 flex items-center">
+          <i class="fas fa-star mr-2 text-blue-500"></i>
+          Calificaciones y Reseñas
+        </h2>
+
+        <!-- Resumen de calificaciones -->
+        <div class="bg-gray-50 p-4 rounded-lg mb-6">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <span class="text-4xl font-bold text-blue-600">{{professional.rating}}</span>
+              <div>
+                <div class="flex text-yellow-400 mb-1">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text-gray-600">Basado en {{professional.reviews.length}} reseñas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista de reseñas -->
+        <div class="space-y-4">
+          <div *ngFor="let review of professional.reviews" 
+               class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h3 class="font-semibold text-gray-800">{{review.userName}}</h3>
+                <p class="text-sm text-gray-500">{{review.serviceType}}</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="flex text-yellow-400">
+                  <i *ngFor="let star of [1,2,3,4,5]" 
+                     [class]="star <= review.rating ? 'fas fa-star' : 'far fa-star'">
+                  </i>
+                </div>
+                <span class="text-sm text-gray-500">{{review.date}}</span>
+              </div>
+            </div>
+            <p class="text-gray-700">{{review.comment}}</p>
+          </div>
+        </div>
+
+        <!-- Botón para ver más reseñas -->
+        <button 
+          *ngIf="professional.reviews.length > 5"
+          (click)="verMasResenas()"
+          class="mt-4 w-full py-2 text-blue-600 hover:text-blue-700 text-center">
+          Ver más reseñas
+          <i class="fas fa-chevron-down ml-1"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

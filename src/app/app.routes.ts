@@ -6,8 +6,7 @@ import { ProfileComponent } from './features/professional/profile/profile.compon
 import { BookingListComponent } from './features/bookings/booking-list/booking-list.component';
 import { DashboardComponent } from './features/client/dashboard/dashboard.component';
 import { SearchComponent } from './features/search/search/search.component';
-import { authGuard } from './core/guards/auth.guard';
-import { professionalGuard } from './core/guards/professional.guard';
+import { RegisterProfessionalComponent } from './features/auth/register-professional/register-professional.component';
 
 export const routes: Routes = [
   {
@@ -18,26 +17,28 @@ export const routes: Routes = [
     path: 'auth',
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'register-professional', component: RegisterProfessionalComponent }
     ]
   },
   {
     path: 'professional',
-    canActivate: [authGuard, professionalGuard],
     children: [
+      { path: ':id', component: ProfileComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'bookings', component: BookingListComponent }
     ]
   },
   {
-    path: 'client',
-    canActivate: [authGuard],
-    children: [
-      { path: 'dashboard', component: DashboardComponent }
-    ]
+    path: 'dashboard',
+    component: DashboardComponent
   },
   {
     path: 'search',
     component: SearchComponent
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];

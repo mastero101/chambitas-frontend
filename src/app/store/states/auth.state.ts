@@ -1,10 +1,10 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { User } from '../../core/models/user.interface';
+import { User, Professional } from '../../core/models/user.interface';
 import { login, loginSuccess, loginFailure, logout } from '../actions/auth.actions';
 
 export interface AuthStateModel {
-  user: User | null;
+  user: (User | Professional) | null;
   token: string | null;
   isLoggedIn: boolean;
 }
@@ -20,7 +20,7 @@ export interface AuthStateModel {
 @Injectable()
 export class AuthState {
   @Selector()
-  static getUser(state: AuthStateModel): User | null {
+  static getUser(state: AuthStateModel): (User | Professional) | null {
     return state.user;
   }
 
@@ -36,7 +36,8 @@ export class AuthState {
 
   @Selector()
   static isProfessional(state: AuthStateModel): boolean {
-    return state.user?.role === 'professional';
+    if (!state.user) return false;
+    return state.user.role === 'professional';
   }
 
   @Action(login)

@@ -1,0 +1,151 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 to-purple-100 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-2xl w-full space-y-8 bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 animate-fade-in">
+        Registro de Profesional
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Únete a nuestra red de profesionales
+      </p>
+    </div>
+    
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Información Personal -->
+        <div class="space-y-4">
+          <div class="transform transition-all duration-300 hover:translate-x-1">
+            <label for="name" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+            <input id="name" type="text" formControlName="name"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            @if (registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched) {
+              <p class="mt-2 text-sm text-red-600">El nombre es requerido</p>
+            }
+          </div>
+
+          <div class="transform transition-all duration-300 hover:translate-x-1">
+            <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+            <input id="email" type="email" formControlName="email"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            @if (registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched) {
+              <p class="mt-2 text-sm text-red-600">El correo es requerido</p>
+            }
+            @if (registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched) {
+              <p class="mt-2 text-sm text-red-600">Ingrese un correo válido</p>
+            }
+          </div>
+
+          <div class="transform transition-all duration-300 hover:translate-x-1">
+            <label for="phone" class="block text-sm font-medium text-gray-700">Teléfono</label>
+            <input id="phone" type="tel" formControlName="phone"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            @if (registerForm.get('phone')?.errors?.['required'] && registerForm.get('phone')?.touched) {
+              <p class="mt-2 text-sm text-red-600">El teléfono es requerido</p>
+            }
+            @if (registerForm.get('phone')?.errors?.['pattern'] && registerForm.get('phone')?.touched) {
+              <p class="mt-2 text-sm text-red-600">Ingrese un número válido de 10 dígitos</p>
+            }
+          </div>
+
+          <div class="transform transition-all duration-300 hover:translate-x-1">
+            <label for="location" class="block text-sm font-medium text-gray-700">Ubicación</label>
+            <input id="location" type="text" formControlName="location"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            @if (registerForm.get('location')?.errors?.['required'] && registerForm.get('location')?.touched) {
+              <p class="mt-2 text-sm text-red-600">La ubicación es requerida</p>
+            }
+          </div>
+        </div>
+
+        <!-- Información Profesional -->
+        <div class="space-y-4">
+          <div class="transform transition-all duration-300 hover:translate-x-1">
+            <label for="profession" class="block text-sm font-medium text-gray-700">Profesión</label>
+            <input id="profession" type="text" formControlName="profession"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            @if (registerForm.get('profession')?.errors?.['required'] && registerForm.get('profession')?.touched) {
+              <p class="mt-2 text-sm text-red-600">La profesión es requerida</p>
+            }
+          </div>
+
+          <div class="transform transition-all duration-300 hover:translate-x-1">
+            <label for="experience" class="block text-sm font-medium text-gray-700">Años de Experiencia</label>
+            <input id="experience" type="number" formControlName="experience"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            @if (registerForm.get('experience')?.errors?.['required'] && registerForm.get('experience')?.touched) {
+              <p class="mt-2 text-sm text-red-600">La experiencia es requerida</p>
+            }
+          </div>
+
+          <div class="transform transition-all duration-300 hover:translate-x-1">
+            <label for="skills" class="block text-sm font-medium text-gray-700">Habilidades</label>
+            <input id="skills" type="text" formControlName="skills"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                   placeholder="Separadas por comas">
+            @if (registerForm.get('skills')?.errors?.['required'] && registerForm.get('skills')?.touched) {
+              <p class="mt-2 text-sm text-red-600">Las habilidades son requeridas</p>
+            }
+          </div>
+
+          <div class="transform transition-all duration-300 hover:translate-x-1">
+            <label for="description" class="block text-sm font-medium text-gray-700">Descripción Profesional</label>
+            <textarea id="description" formControlName="description" rows="4"
+                      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+            @if (registerForm.get('description')?.errors?.['required'] && registerForm.get('description')?.touched) {
+              <p class="mt-2 text-sm text-red-600">La descripción es requerida</p>
+            }
+            @if (registerForm.get('description')?.errors?.['minlength'] && registerForm.get('description')?.touched) {
+              <p class="mt-2 text-sm text-red-600">La descripción debe tener al menos 100 caracteres</p>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Contraseñas -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="transform transition-all duration-300 hover:translate-x-1">
+          <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+          <input id="password" type="password" formControlName="password"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          @if (registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched) {
+            <p class="mt-2 text-sm text-red-600">La contraseña es requerida</p>
+          }
+          @if (registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched) {
+            <p class="mt-2 text-sm text-red-600">La contraseña debe tener al menos 6 caracteres</p>
+          }
+        </div>
+
+        <div class="transform transition-all duration-300 hover:translate-x-1">
+          <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+          <input id="confirmPassword" type="password" formControlName="confirmPassword"
+                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          @if (registerForm.get('confirmPassword')?.errors?.['required'] && registerForm.get('confirmPassword')?.touched) {
+            <p class="mt-2 text-sm text-red-600">Confirme su contraseña</p>
+          }
+          @if (registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched) {
+            <p class="mt-2 text-sm text-red-600">Las contraseñas no coinciden</p>
+          }
+        </div>
+      </div>
+
+      <!-- Botón de registro -->
+      <div>
+        <button type="submit" 
+                [disabled]="registerForm.invalid"
+                [ngClass]="{
+                  'bg-indigo-600 hover:bg-indigo-700': !registerForm.invalid,
+                  'bg-gray-400 cursor-not-allowed': registerForm.invalid
+                }"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Registrarse como Profesional
+        </button>
+      </div>
+
+      <div class="text-sm text-center">
+        <a [routerLink]="['/auth/login']" 
+           class="font-medium text-indigo-600 hover:text-indigo-500">
+          ¿Ya tienes una cuenta? Inicia sesión
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

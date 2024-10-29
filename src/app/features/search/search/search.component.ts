@@ -1,17 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-interface Professional {
-  id: number;
-  name: string;
-  profession: string;
-  location: string;
-  rating: number;
-  imageUrl: string;
-  description: string;
-  categoryId: string;
-}
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { Professional } from '@core/models/professional.interface';
+import { PROFESSIONALS } from '@core/data/professionals.data';
 
 interface Category {
   id: string;
@@ -29,7 +22,8 @@ interface Location {
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
@@ -39,69 +33,9 @@ export class SearchComponent implements OnInit {
   selectedCategory: string = '';
   selectedLocation: string = '';
   
-  professionals: Professional[] = [
-    {
-      id: 1,
-      name: 'Juan Pérez',
-      profession: 'Carpintero',
-      location: 'Merida',
-      rating: 4.8,
-      imageUrl: 'assets/images/carpintero.webp',
-      description: 'Especialista en muebles a medida con más de 15 años de experiencia.',
-      categoryId: 'carpinteria'
-    },
-    {
-      id: 2,
-      name: 'Carlos Gómez',
-      profession: 'Electricista',
-      location: 'CDMX',
-      rating: 4.9,
-      imageUrl: 'assets/images/electricista.webp',
-      description: 'Especialista en instalaciones eléctricas residenciales y comerciales.',
-      categoryId: 'electricidad'
-    },
-    {
-      id: 3,
-      name: 'Jaime López',
-      profession: 'Plomera',
-      location: 'Guadalajara',
-      rating: 4.7,
-      imageUrl: 'assets/images/plomero.webp',
-      description: 'Experta en reparaciones y mantenimiento de sistemas de agua y gas.',
-      categoryId: 'plomeria'
-    },
-    {
-      id: 4,
-      name: 'Juan Carlos Hernández',
-      profession: 'Albañil',
-      location: 'Monterrey',
-      rating: 4.8,
-      imageUrl: 'assets/images/albañil.webp',
-      description: 'Maestro en construcción y remodelación de edificios y estructuras.',
-      categoryId: 'albanileria'
-    },
-    {
-      id: 5,
-      name: 'Mariano Rodríguez',
-      profession: 'Mecánico',
-      location: 'Puebla',
-      rating: 4.6,
-      imageUrl: 'assets/images/mecanico.webp',
-      description: 'Especialista en reparaciones y mantenimiento de vehículos.',
-      categoryId: 'mecanica'
-    },
-    {
-      id: 6,
-      name: 'Luis Sánchez',
-      profession: 'Refrigeración',
-      location: 'Campeche',
-      rating: 4.9,
-      imageUrl: 'assets/images/refrigeracion.webp',
-      description: 'Especialista en instalación y mantenimiento de sistemas de refrigeración y A/C',
-      categoryId: 'refrigeracion'
-    }
-  ];
-
+  professionals: Professional[] = [];
+  allProfessionals: Professional[] = [];
+  
   categories: Category[] = [
     { id: 'carpinteria', name: 'Carpintería' },
     { id: 'electricidad', name: 'Electricidad' },
@@ -112,11 +46,8 @@ export class SearchComponent implements OnInit {
   ];
 
   locations: Location[] = [
-    // Ciudad de México
     { id: 'cdmx', name: 'CDMX' },
-    // Estado de México
     { id: 'edomex', name: 'EDOMEX' },  
-    // Otras zonas metropolitanas
     { id: 'guadalajara', name: 'Guadalajara' },
     { id: 'monterrey', name: 'Monterrey' },
     { id: 'puebla', name: 'Puebla' },
@@ -127,16 +58,11 @@ export class SearchComponent implements OnInit {
     { id: 'cancun', name: 'Cancún' }
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    // Guardamos una copia de todos los profesionales
-    this.allProfessionals = [...this.professionals];
-    this.loadProfessionals();
-  }
-
-  loadProfessionals(): void {
-    // Aquí iría la lógica para cargar profesionales desde el backend
+    this.professionals = PROFESSIONALS;
+    this.allProfessionals = [...PROFESSIONALS];
   }
 
   onSearch(): void {
@@ -191,5 +117,9 @@ export class SearchComponent implements OnInit {
 
   private searchDebounceTimeout: any;
 
-  private allProfessionals: Professional[] = [];
+  navigateToProfile(professional: Professional): void {
+    this.router.navigate(['/professional/profile'], {
+      state: { professional }
+    });
+  }
 }

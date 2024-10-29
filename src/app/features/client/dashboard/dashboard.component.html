@@ -1,1 +1,122 @@
-<p>dashboard works!</p>
+<div class="container mx-auto px-4 py-8">
+  <!-- Perfil del Usuario -->
+  <div class="mb-8 bg-white rounded-lg shadow p-6">
+    <div class="flex items-center space-x-4">
+      <img [src]="currentUser.avatar" 
+           [alt]="currentUser.name"
+           class="w-16 h-16 rounded-full object-cover">
+      
+      <div>
+        <h1 class="text-2xl font-bold text-gray-800">
+          Hola, {{currentUser.name}}
+        </h1>
+        <p class="text-gray-600">{{currentUser.location}}</p>
+      </div>
+    </div>
+
+    <!-- Estadísticas del Usuario -->
+    <div class="grid grid-cols-3 gap-4 mt-6">
+      <div class="text-center p-4 bg-gray-50 rounded-lg">
+        <p class="text-2xl font-bold text-blue-600">{{currentUser.totalServices}}</p>
+        <p class="text-sm text-gray-600">Total Servicios</p>
+      </div>
+      <div class="text-center p-4 bg-gray-50 rounded-lg">
+        <p class="text-2xl font-bold text-green-600">{{currentUser.completedServices}}</p>
+        <p class="text-sm text-gray-600">Completados</p>
+      </div>
+      <div class="text-center p-4 bg-gray-50 rounded-lg">
+        <p class="text-2xl font-bold text-yellow-600">{{currentUser.activeServices}}</p>
+        <p class="text-sm text-gray-600">Activos</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secciones existentes -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Servicios Recientes -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4 flex items-center">
+        <i class="fas fa-tools mr-2 text-blue-500"></i>
+        Servicios Recientes
+      </h2>
+      
+      <div class="space-y-4">
+        <div *ngFor="let service of recentServices" 
+             class="flex items-center p-4 border rounded-lg hover:bg-gray-50">
+          <img [src]="service.imageUrl" 
+               [alt]="service.professionalName"
+               class="w-12 h-12 rounded-full object-cover">
+          
+          <div class="ml-4 flex-grow">
+            <h3 class="font-medium">{{service.service}}</h3>
+            <p class="text-sm text-gray-600">{{service.professionalName}}</p>
+            <p class="text-sm text-gray-500">{{service.date | date:'mediumDate'}}</p>
+          </div>
+          
+          <span [ngClass]="{
+            'bg-yellow-100 text-yellow-800': service.status === 'pendiente',
+            'bg-blue-100 text-blue-800': service.status === 'en-proceso',
+            'bg-green-100 text-green-800': service.status === 'completado',
+            'bg-red-100 text-red-800': service.status === 'cancelado'
+          }" class="px-3 py-1 rounded-full text-sm">
+            {{service.status | titlecase}}
+          </span>
+        </div>
+      </div>
+
+      <button class="mt-4 text-blue-500 hover:text-blue-600 text-sm">
+        Ver todos los servicios
+      </button>
+    </div>
+
+    <!-- Profesionales Favoritos -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4 flex items-center">
+        <i class="fas fa-star mr-2 text-blue-500"></i>
+        Profesionales Favoritos
+      </h2>
+      
+      <div class="space-y-4">
+        <div *ngFor="let prof of favoritesProfessionals" 
+             class="flex items-center p-4 border rounded-lg hover:bg-gray-50">
+          <img [src]="prof.imageUrl" 
+               [alt]="prof.name"
+               class="w-12 h-12 rounded-full object-cover">
+          
+          <div class="ml-4 flex-grow">
+            <h3 class="font-medium">{{prof.name}} {{prof.lastName}}</h3>
+            <p class="text-sm text-gray-600">{{prof.profession}}</p>
+            <div class="flex items-center text-sm text-gray-500">
+              <i class="fas fa-star text-yellow-400 mr-1"></i>
+              {{prof.rating}}
+            </div>
+          </div>
+          
+          <button class="text-blue-500 hover:text-blue-600">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <button class="mt-4 text-blue-500 hover:text-blue-600 text-sm">
+        Ver todos los favoritos
+      </button>
+    </div>
+  </div>
+
+  <!-- Acciones Rápidas -->
+  <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <button class="p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center gap-2" [routerLink]="['/search']">
+      <i class="fas fa-search"></i>
+      Buscar Profesional
+    </button>
+    <button class="p-4 bg-green-500 text-white rounded-lg hover:bg-green-600 flex items-center justify-center gap-2">
+      <i class="fas fa-calendar-plus"></i>
+      Agendar Servicio
+    </button>
+    <button class="p-4 bg-purple-500 text-white rounded-lg hover:bg-purple-600 flex items-center justify-center gap-2">
+      <i class="fas fa-history"></i>
+      Ver Historial
+    </button>
+  </div>
+</div>

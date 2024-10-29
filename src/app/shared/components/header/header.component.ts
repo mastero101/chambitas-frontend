@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { Store } from '@ngxs/store';
-import { AuthState } from '../../../store/states/auth.state';
-import { logout } from '../../../store/actions/auth.actions';
+import { Router, RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AsyncPipe } from '@angular/common';
+import { PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+//Reservados para uso futuro en servicios de autenticación
+import { Store } from '@ngxs/store';
+import { AuthState } from '../../../store/states/auth.state';
+import { logout } from '../../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -26,14 +30,28 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  isLoggedIn$ = this.store.select(AuthState.isLoggedIn);
-  isProfessional$ = this.store.select(AuthState.isProfessional);
-  isMobileMenuOpen = false;
+  isMobileMenuOpen: boolean | undefined;
+  private isBrowser: boolean;
 
-  constructor(private store: Store) {}
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+  
+  isLoggedIn(): boolean {
+    if (this.isBrowser) {
+      return localStorage.getItem('token') !== null;
+    }
+    return false;
+  }
 
-  logout() {
-    this.store.dispatch(new logout());
+  logout(): void {
+    if (this.isBrowser) {
+      localStorage.removeItem('token');
+    }
+    this.router.navigate(['/']);
   }
 
   toggleMobileMenu() {

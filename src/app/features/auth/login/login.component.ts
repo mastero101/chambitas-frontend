@@ -33,13 +33,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       
-      console.log('Valores ingresados:', { email, password });
-      console.log('Valores esperados:', this.mockCredentials);
-      
       if (email === this.mockCredentials.email && password === this.mockCredentials.password) {
+        // Guardamos un token simple en localStorage
+        localStorage.setItem('token', 'mock-jwt-token');
         console.log('Login exitoso!');
         alert('Login exitoso! Bienvenido');
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
       } else {
         console.log('Credenciales incorrectas');
         alert('Credenciales incorrectas');

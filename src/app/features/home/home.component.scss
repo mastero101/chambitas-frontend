@@ -297,89 +297,76 @@
 }
 
 .cta-section {
-  text-align: center;
-  padding: 4rem 0;
-  width: 100%; // Añadir width 100%
-  background: linear-gradient(135deg, rgba(52,152,219,0.9) 0%, rgba(41,128,185,0.9) 100%),
-  url('../../../assets/images/aleksander-trabajando-en-la-obra-1.r_d.539-296-9990.webp') center/cover;;
+  background: linear-gradient(135deg, #2a2a72 0%, #009ffd 100%);
   color: white;
-  position: relative;
-  overflow: hidden;
-  
+  text-align: center;
+  padding: 4rem 2rem;
+  margin: 0.1rem auto;
+  max-width: 100%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
   h2 {
+    font-size: 2.5rem;
     margin-bottom: 1rem;
+    font-weight: 700;
   }
-  
+
   p {
+    font-size: 1.2rem;
     margin-bottom: 2rem;
+    opacity: 0.9;
   }
-  
+
   .btn-primary {
-    background: white;
-    color: #3498db;
-    border: none;
-    padding: 1.2rem 2.8rem;
-    border-radius: 50px;
+    position: relative;
+    margin: 0.8rem;
+    padding: 1rem 2.5rem;
     font-size: 1.1rem;
     font-weight: 600;
-    cursor: pointer;
-    position: relative;
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: 50px;
+    background: white;
+    color: #2a2a72;
     overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    &:first-of-type {
+      background: #e74c3c;
+      color: #ffffff;
+    }
+
     &::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      background: rgba(52,152,219,0.1);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: width 0.6s ease, height 0.6s ease;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: translateX(-100%);
     }
-    
+
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-      color: #2980b9;
-      
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
       &::before {
-        width: 300px;
-        height: 300px;
+        animation: shine 1.5s;
       }
     }
-    
+
     &:active {
       transform: translateY(-1px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
-    
-    // Efecto de brillo
-    &::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to right,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.3) 50%,
-        rgba(255,255,255,0) 100%
-      );
-      transform: rotate(45deg);
-      transition: all 0.8s;
-      opacity: 0;
-    }
-    
-    &:hover::after {
-      opacity: 1;
-      left: 100%;
-    }
+  }
+}
+
+@keyframes shine {
+  100% {
+    transform: translateX(100%);
   }
 }
 
@@ -457,6 +444,19 @@
       p {
         font-size: 0.9rem;
       }
+    }
+  }
+
+  .cta-section {
+    padding: 3rem 1rem;
+    
+    h2 {
+      font-size: 2rem;
+    }
+
+    button {
+      width: 100%;
+      margin: 0.5rem 0;
     }
   }
 }

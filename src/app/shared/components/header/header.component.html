@@ -16,13 +16,11 @@
         </a>
       </nav>
 
-      <!-- Botones de autenticación - Solo Desktop -->
+      <!-- Botones de autenticación -->
       <div class="hidden md:flex items-center gap-4">
-        @if (isLoggedIn$ | async) {
-          <button mat-flat-button color="warn" (click)="logout()" class="h-9">
-            <mat-icon>logout</mat-icon>
-            <span class="ml-1">Cerrar Sesión</span>
-          </button>
+        @if (isLoggedIn()) {
+          <a routerLink="/dashboard" mat-flat-button color="primary">Dashboard</a>
+          <button mat-flat-button color="warn" (click)="logout()">Cerrar Sesión</button>
         } @else {
           <a routerLink="/auth/login" 
              mat-stroked-button 
@@ -64,7 +62,13 @@
           <span class="text-sm font-medium">Buscar Profesionales</span>
         </a>
 
-        @if (isLoggedIn$ | async) {
+        @if (isLoggedIn()) {
+          <a routerLink="/dashboard" 
+             class="flex items-center px-4 py-3 text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+             (click)="toggleMobileMenu()">
+            <mat-icon class="mr-3">dashboard</mat-icon>
+            <span class="text-sm font-medium">Dashboard</span>
+          </a>
           <button (click)="logout(); toggleMobileMenu()" 
                   class="flex items-center w-full px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
             <mat-icon class="mr-3">logout</mat-icon>
