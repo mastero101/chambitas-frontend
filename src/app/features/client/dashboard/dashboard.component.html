@@ -64,8 +64,11 @@
         </div>
       </div>
 
-      <button class="mt-4 text-blue-500 hover:text-blue-600 text-sm">
-        Ver todos los servicios
+      <!-- Botón Ver todos los servicios -->
+      <button [routerLink]="['/recent-services']" 
+              class="mt-4 inline-flex items-center gap-2 px-4 py-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-all duration-200 group">
+        <span class="font-medium">Ver todos los servicios</span>
+        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
       </button>
     </div>
 
@@ -98,8 +101,11 @@
         </div>
       </div>
 
-      <button class="mt-4 text-blue-500 hover:text-blue-600 text-sm">
-        Ver todos los favoritos
+      <!-- Botón Ver todos los favoritos -->
+      <button [routerLink]="['/favorites']"
+              class="mt-4 inline-flex items-center gap-2 px-4 py-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-all duration-200 group">
+        <span class="font-medium">Ver todos los favoritos</span>
+        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
       </button>
     </div>
   </div>

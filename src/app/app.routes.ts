@@ -7,6 +7,7 @@ import { BookingListComponent } from './features/bookings/booking-list/booking-l
 import { DashboardComponent } from './features/client/dashboard/dashboard.component';
 import { SearchComponent } from './features/search/search/search.component';
 import { RegisterProfessionalComponent } from './features/auth/register-professional/register-professional.component';
+import { RecentServicesComponent } from './features/client/recent-services/recent-services.component';
 
 export const routes: Routes = [
   {
@@ -36,6 +37,10 @@ export const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent
+  },
+  {
+    path: 'recent-services',
+    component: RecentServicesComponent
   },
   {
     path: '**',

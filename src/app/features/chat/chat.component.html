@@ -1,12 +1,12 @@
 <div class="fixed md:bottom-0 md:right-4 transition-all duration-300 
-            bottom-16 right-0 left-0 md:left-auto md:w-96 w-full z-50 bg-white shadow-lg"
+            bottom-16 right-0 left-0 md:left-auto md:w-96 w-full z-50 bg-white shadow-lg rounded-xl overflow-hidden"
      [ngClass]="{
        'h-[500px] md:h-[500px]': !isMinimized,
        'h-14': isMinimized
      }">
   
   <!-- Header -->
-  <div class="flex items-center justify-between bg-blue-500 text-white p-3 rounded-t-xl cursor-pointer"
+  <div class="flex items-center justify-between bg-blue-500 text-white p-3 cursor-pointer"
        (click)="toggleMinimize()">
     <div class="flex items-center gap-3">
       <img [src]="professional.imageUrl" 
@@ -14,7 +14,7 @@
            class="w-8 h-8 rounded-full object-cover">
       <span class="font-semibold">{{professional.name}}</span>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-3">
       <button (click)="toggleMinimize(); $event.stopPropagation()"
               class="text-white hover:text-gray-200">
         <i [class]="isMinimized ? 'fas fa-expand' : 'fas fa-minus'"></i>
@@ -27,7 +27,7 @@
   </div>
 
   <!-- Chat Body -->
-  <div class="flex flex-col bg-white h-[calc(100%-3.5rem)] relative" *ngIf="!isMinimized">
+  <div class="flex flex-col bg-white h-[calc(100%-3.5rem)] relative overflow-hidden" *ngIf="!isMinimized">
     <!-- Messages -->
     <div class="flex-1 p-4 overflow-y-auto space-y-4">
       <div *ngFor="let message of messages" 

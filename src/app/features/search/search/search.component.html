@@ -56,7 +56,7 @@
         <p class="description">{{professional.description}}</p>
       </div>
       <div class="professional-footer">
-        <button class="btn-contact">
+        <button class="btn-contact" (click)="contactProfessional(professional)">
           <i class="fas fa-envelope"></i> Contactar
         </button>
         <button (click)="navigateToProfile(professional)" 
@@ -74,4 +74,10 @@
     <p>Intenta con otros términos de búsqueda o filtros</p>
     <button class="btn-reset" (click)="resetFilters()">Resetear filtros</button>
   </div>
+
+  <app-chat 
+    *ngIf="showChat && selectedProfessional"
+    [professional]="selectedProfessional"
+    (close)="onChatClose()">
+  </app-chat>
 </section>

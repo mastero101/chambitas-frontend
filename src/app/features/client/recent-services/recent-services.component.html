@@ -1,0 +1,128 @@
+<div class="container mx-auto px-4 py-8">
+  <!-- Botón Regresar -->
+  <div class="mb-4">
+    <button routerLink="/dashboard" 
+            class="inline-flex items-center px-4 py-2 text-gray-700 hover:text-blue-600 transition-colors rounded-lg hover:bg-blue-50 group">
+      <i class="fas fa-arrow-left mr-2 transform group-hover:-translate-x-1 transition-transform"></i>
+      <span class="font-medium">Regresar al Dashboard</span>
+    </button>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-lg">
+    <!-- Header -->
+    <div class="border-b p-6 bg-gradient-to-r from-blue-50 to-indigo-50">
+      <h1 class="text-3xl font-bold text-gray-800 tracking-tight">Servicios Recientes</h1>
+      <p class="text-gray-600 mt-2">Historial de tus últimos servicios solicitados</p>
+    </div>
+
+    <!-- Filtros -->
+    <div class="p-6 border-b bg-white shadow-sm">
+      <div class="flex flex-wrap gap-4">
+        <div class="flex items-center gap-2">
+          <span class="text-gray-700 font-medium">Estado:</span>
+          <select class="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+            <option value="">Todos</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="en-proceso">En Proceso</option>
+            <option value="completado">Completado</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+        </div>
+        
+        <div class="flex items-center gap-2">
+          <span class="text-gray-700">Ordenar por:</span>
+          <select class="border rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500">
+            <option value="date-desc">Más recientes</option>
+            <option value="date-asc">Más antiguos</option>
+            <option value="price-desc">Mayor precio</option>
+            <option value="price-asc">Menor precio</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de Servicios -->
+    <div class="divide-y divide-gray-100">
+      <div *ngFor="let service of services" class="p-6 hover:bg-gray-50 transition-all duration-200">
+        <!-- Contenedor principal con grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- Info del Profesional -->
+          <div class="lg:col-span-3">
+            <div class="flex items-center gap-4">
+              <img [src]="service.professionalImage" 
+                   [alt]="service.professionalName"
+                   class="w-16 h-16 rounded-full object-cover ring-2 ring-offset-2 ring-gray-200">
+              <div>
+                <h3 class="font-semibold text-lg text-gray-900">{{service.service}}</h3>
+                <p class="text-gray-600">{{service.professionalName}}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detalles del Servicio -->
+          <div class="lg:col-span-6 grid grid-cols-3 gap-4">
+            <div>
+              <p class="text-sm text-gray-500">Fecha</p>
+              <p class="font-medium">{{service.date | date:'mediumDate'}}</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Precio</p>
+              <p class="font-medium">${{service.price}}</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Estado</p>
+              <span [class]="getStatusClass(service.status) + ' px-3 py-1 rounded-full text-sm inline-block'">
+                {{service.status | titlecase}}
+              </span>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="lg:col-span-3 flex justify-end gap-3">
+            <button class="px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center">
+              <i class="fas fa-eye text-sm"></i>
+              <span class="ml-2 font-medium">Ver detalles</span>
+            </button>
+            <button *ngIf="service.status === 'en-proceso' || service.status === 'pendiente' || service.status === 'completado'" 
+                    class="px-4 py-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors flex items-center">
+              <i class="fas fa-message text-sm"></i>
+              <span class="ml-2 font-medium">Chat</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Detalles Adicionales -->
+        <div class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm text-gray-600">
+          <div class="flex items-center">
+            <i class="fas fa-map-marker-alt w-5"></i>
+            <span>{{service.location}}</span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-tag w-5"></i>
+            <span>{{service.category}}</span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-clipboard-list w-5"></i>
+            <span>{{service.description}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paginación -->
+    <div class="p-6 border-t bg-gray-50">
+      <div class="flex justify-between items-center">
+        <p class="text-gray-600">Mostrando 1-10 de 24 servicios</p>
+        <div class="flex gap-2">
+          <button class="px-4 py-2 border rounded-lg hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  disabled>
+            Anterior
+          </button>
+          <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            Siguiente
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

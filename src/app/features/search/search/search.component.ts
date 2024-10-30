@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { Professional } from '@core/models/professional.interface';
 import { PROFESSIONALS } from '@core/data/professionals.data';
+import { ChatComponent } from '../../chat/chat.component';
 
 interface Category {
   id: string;
@@ -23,7 +24,8 @@ interface Location {
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    ChatComponent
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
@@ -57,6 +59,9 @@ export class SearchComponent implements OnInit {
     { id: 'campeche', name: 'Campeche' },
     { id: 'cancun', name: 'Cancún' }
   ];
+
+  showChat = false;
+  selectedProfessional: Professional | null = null;
 
   constructor(private router: Router) { }
 
@@ -121,5 +126,15 @@ export class SearchComponent implements OnInit {
     this.router.navigate(['/professional/profile'], {
       state: { professional }
     });
+  }
+
+  contactProfessional(professional: Professional): void {
+    this.selectedProfessional = professional;
+    this.showChat = true;
+  }
+
+  onChatClose(): void {
+    this.showChat = false;
+    this.selectedProfessional = null;
   }
 }
