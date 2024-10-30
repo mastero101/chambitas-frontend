@@ -32,6 +32,7 @@ export interface Professional {
   experience?: Experience[];
   reviews: Review[];
   certifications: Certification[];
+  servicios: Servicio[];
 }
 
 export interface Experience {
@@ -39,4 +40,11 @@ export interface Experience {
   company: string;
   period: string;
   description: string;
+}
+
+export interface Servicio {
+  nombre: string;
+  precioBase: number;
+  descripcion: string;
+  caracteristicas: string[];
 }

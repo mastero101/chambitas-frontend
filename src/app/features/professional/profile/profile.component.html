@@ -192,6 +192,48 @@
           <i class="fas fa-chevron-down ml-1"></i>
         </button>
       </div>
+
+      <!-- Servicios -->
+      <div class="mt-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <i class="fas fa-clipboard-list text-blue-500"></i>
+          Servicios Ofrecidos
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div *ngFor="let servicio of professional.servicios" 
+               class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <h3 class="text-xl font-bold text-blue-600 mb-3">{{servicio.nombre}}</h3>
+            
+            <div class="mb-4">
+              <span class="text-3xl font-bold text-gray-800">${{servicio.precioBase}}</span>
+            </div>
+            
+            <p class="text-gray-600 mb-6 min-h-[60px]">{{servicio.descripcion}}</p>
+            
+            <ul class="space-y-3 mb-8">
+              <li *ngFor="let caracteristica of servicio.caracteristicas" 
+                  class="flex items-start gap-2 text-gray-700">
+                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                <span>{{caracteristica}}</span>
+              </li>
+            </ul>
+
+            <button 
+              (click)="solicitarServicio(servicio)"
+              class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-md group">
+              <i class="fas fa-calendar-plus group-hover:scale-110 transition-transform"></i>
+              <span>Solicitar Servicio</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- Agregar al final del template -->
+  <app-chat *ngIf="showChat" 
+            [professional]="professional"
+            (close)="onChatClose()">
+  </app-chat>
 </div>

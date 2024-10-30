@@ -75,6 +75,30 @@ export const PROFESSIONALS: Professional[] = [
         year: "2020",
         description: "Especialización en restauración de muebles antiguos"
       }
+    ],
+    servicios: [
+      {
+        nombre: 'Muebles a Medida',
+        precioBase: 2500,
+        descripcion: 'Diseño y fabricación de muebles personalizados según sus necesidades',
+        caracteristicas: [
+          'Diseño personalizado',
+          'Selección de materiales',
+          'Acabados de alta calidad',
+          'Instalación incluida'
+        ]
+      },
+      {
+        nombre: 'Restauración de Muebles',
+        precioBase: 1200,
+        descripcion: 'Restauración y renovación de muebles antiguos o dañados',
+        caracteristicas: [
+          'Evaluación inicial',
+          'Reparación estructural',
+          'Acabados originales',
+          'Tratamiento anti-plagas'
+        ]
+      }
     ]
   },
   {
@@ -150,6 +174,30 @@ export const PROFESSIONALS: Professional[] = [
         institution: "Asociación Mexicana de Energía Solar",
         year: "2021",
         description: "Especialización en sistemas fotovoltaicos"
+      }
+    ],
+    servicios: [
+      {
+        nombre: 'Instalación Eléctrica',
+        precioBase: 1800,
+        descripcion: 'Instalación completa o parcial de sistema eléctrico residencial',
+        caracteristicas: [
+          'Diagnóstico inicial',
+          'Material certificado',
+          'Pruebas de seguridad',
+          'Garantía de trabajo'
+        ]
+      },
+      {
+        nombre: 'Mantenimiento Preventivo',
+        precioBase: 800,
+        descripcion: 'Revisión y mantenimiento de instalaciones eléctricas',
+        caracteristicas: [
+          'Inspección completa',
+          'Detección de riesgos',
+          'Ajustes necesarios',
+          'Reporte detallado'
+        ]
       }
     ]
   },
@@ -227,6 +275,30 @@ export const PROFESSIONALS: Professional[] = [
         year: "2021",
         description: "Certificación en diseño e instalación de sistemas de riego"
       }
+    ],
+    servicios: [
+      {
+        nombre: 'Reparación de Fugas',
+        precioBase: 600,
+        descripcion: 'Detección y reparación de fugas de agua',
+        caracteristicas: [
+          'Detección profesional',
+          'Reparación inmediata',
+          'Prevención de daños',
+          'Garantía del servicio'
+        ]
+      },
+      {
+        nombre: 'Instalación Hidráulica',
+        precioBase: 1500,
+        descripcion: 'Instalación de sistemas de agua y drenaje',
+        caracteristicas: [
+          'Materiales de calidad',
+          'Instalación normada',
+          'Pruebas de presión',
+          'Certificación del trabajo'
+        ]
+      }
     ]
   },
   {
@@ -302,6 +374,30 @@ export const PROFESSIONALS: Professional[] = [
         institution: "Instituto de la Construcción",
         year: "2019",
         description: "Certificación en sistemas de impermeabilización modernos"
+      }
+    ],
+    servicios: [
+      {
+        nombre: 'Construcción',
+        precioBase: 3000,
+        descripcion: 'Construcción de muros, pisos y estructuras básicas',
+        caracteristicas: [
+          'Presupuesto detallado',
+          'Materiales incluidos',
+          'Acabados profesionales',
+          'Limpieza posterior'
+        ]
+      },
+      {
+        nombre: 'Remodelación',
+        precioBase: 2000,
+        descripcion: 'Renovación y remodelación de espacios existentes',
+        caracteristicas: [
+          'Asesoría de diseño',
+          'Demolición incluida',
+          'Acabados a elegir',
+          'Manejo de escombros'
+        ]
       }
     ]
   },
@@ -379,6 +475,30 @@ export const PROFESSIONALS: Professional[] = [
         year: "2021",
         description: "Certificación en sistemas electrónicos y computarizados"
       }
+    ],
+    servicios: [
+      {
+        nombre: 'Mantenimiento General',
+        precioBase: 1200,
+        descripcion: 'Servicio completo de mantenimiento preventivo',
+        caracteristicas: [
+          'Diagnóstico computarizado',
+          'Cambio de aceite',
+          'Revisión de frenos',
+          'Afinación básica'
+        ]
+      },
+      {
+        nombre: 'Reparación Mayor',
+        precioBase: 3500,
+        descripcion: 'Reparación de motor y sistemas principales',
+        caracteristicas: [
+          'Diagnóstico completo',
+          'Reparación especializada',
+          'Refacciones originales',
+          'Garantía extendida'
+        ]
+      }
     ]
   },
   {
@@ -454,6 +574,30 @@ export const PROFESSIONALS: Professional[] = [
         institution: "Asociación Mexicana de Empresas de Refrigeración",
         year: "2021",
         description: "Certificación en sistemas de aire acondicionado residencial y comercial"
+      }
+    ],
+    servicios: [
+      {
+        nombre: 'Mantenimiento A/C',
+        precioBase: 800,
+        descripcion: 'Servicio de mantenimiento para aire acondicionado',
+        caracteristicas: [
+          'Limpieza profunda',
+          'Recarga de gas',
+          'Revisión eléctrica',
+          'Sanitización'
+        ]
+      },
+      {
+        nombre: 'Instalación Nueva',
+        precioBase: 2500,
+        descripcion: 'Instalación completa de equipo de aire acondicionado',
+        caracteristicas: [
+          'Equipo incluido',
+          'Instalación certificada',
+          'Pruebas de funcionamiento',
+          'Garantía de instalación'
+        ]
       }
     ]
   }

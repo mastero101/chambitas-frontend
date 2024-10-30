@@ -1,0 +1,64 @@
+<div class="fixed md:bottom-0 md:right-4 transition-all duration-300 
+            bottom-16 right-0 left-0 md:left-auto md:w-96 w-full z-50 bg-white shadow-lg"
+     [ngClass]="{
+       'h-[500px] md:h-[500px]': !isMinimized,
+       'h-14': isMinimized
+     }">
+  
+  <!-- Header -->
+  <div class="flex items-center justify-between bg-blue-500 text-white p-3 rounded-t-xl cursor-pointer"
+       (click)="toggleMinimize()">
+    <div class="flex items-center gap-3">
+      <img [src]="professional.imageUrl" 
+           [alt]="professional.name"
+           class="w-8 h-8 rounded-full object-cover">
+      <span class="font-semibold">{{professional.name}}</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button (click)="toggleMinimize(); $event.stopPropagation()"
+              class="text-white hover:text-gray-200">
+        <i [class]="isMinimized ? 'fas fa-expand' : 'fas fa-minus'"></i>
+      </button>
+      <button (click)="closeChat(); $event.stopPropagation()"
+              class="text-white hover:text-gray-200">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Body -->
+  <div class="flex flex-col bg-white h-[calc(100%-3.5rem)] relative" *ngIf="!isMinimized">
+    <!-- Messages -->
+    <div class="flex-1 p-4 overflow-y-auto space-y-4">
+      <div *ngFor="let message of messages" 
+           [class.flex-row-reverse]="message.sender === 'user'"
+           class="flex gap-3">
+        <img *ngIf="message.sender === 'professional'"
+             [src]="professional.imageUrl" 
+             class="w-8 h-8 rounded-full object-cover">
+        <div [class.bg-blue-500]="message.sender === 'user'"
+             [class.text-white]="message.sender === 'user'"
+             [class.bg-gray-100]="message.sender === 'professional'"
+             class="max-w-[70%] rounded-xl p-3">
+          <p>{{message.text}}</p>
+          <span class="text-xs opacity-70">{{message.time | date:'shortTime'}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="p-4 border-t">
+      <form (ngSubmit)="sendMessage()" class="flex gap-2">
+        <input type="text" 
+               [(ngModel)]="newMessage"
+               name="newMessage"
+               placeholder="Escribe un mensaje..."
+               class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+        <button type="submit"
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
