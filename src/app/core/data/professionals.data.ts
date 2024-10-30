@@ -1,5 +1,37 @@
 import { Professional } from '../models/professional.interface';
 
+const generarHorariosDisponibles = () => {
+  return [
+    { dia: 'lunes', horaInicio: '09:00', horaFin: '18:00' },
+    { dia: 'martes', horaInicio: '09:00', horaFin: '18:00' },
+    { dia: 'miércoles', horaInicio: '09:00', horaFin: '18:00' },
+    { dia: 'jueves', horaInicio: '09:00', horaFin: '18:00' },
+    { dia: 'viernes', horaInicio: '09:00', horaFin: '16:00' }
+  ];
+};
+
+const generarCitasOcupadas = () => {
+  const citas = [];
+  const servicios = ['Mantenimiento', 'Instalación', 'Reparación', 'Consulta'];
+  const duraciones = [60, 90, 120, 180];
+
+  // Generar citas para los próximos 15 días
+  for (let i = 0; i < 5; i++) {
+    const fecha = new Date();
+    fecha.setDate(fecha.getDate() + Math.floor(Math.random() * 15));
+    
+    citas.push({
+      fecha: fecha,
+      horaInicio: `${9 + Math.floor(Math.random() * 8)}:${Math.random() < 0.5 ? '00' : '30'}`,
+      duracion: duraciones[Math.floor(Math.random() * duraciones.length)],
+      servicio: servicios[Math.floor(Math.random() * servicios.length)],
+      estado: 'confirmada'
+    });
+  }
+
+  return citas;
+};
+
 export const PROFESSIONALS: Professional[] = [
   {
     id: 1,
@@ -99,7 +131,11 @@ export const PROFESSIONALS: Professional[] = [
           'Tratamiento anti-plagas'
         ]
       }
-    ]
+    ],
+    disponibilidad: {
+      horariosDisponibles: generarHorariosDisponibles(),
+      citasOcupadas: generarCitasOcupadas()
+    }
   },
   {
     id: 2,
@@ -199,7 +235,11 @@ export const PROFESSIONALS: Professional[] = [
           'Reporte detallado'
         ]
       }
-    ]
+    ],
+    disponibilidad: {
+      horariosDisponibles: generarHorariosDisponibles(),
+      citasOcupadas: generarCitasOcupadas()
+    }
   },
   {
     id: 3,
@@ -299,7 +339,11 @@ export const PROFESSIONALS: Professional[] = [
           'Certificación del trabajo'
         ]
       }
-    ]
+    ],
+    disponibilidad: {
+      horariosDisponibles: generarHorariosDisponibles(),
+      citasOcupadas: generarCitasOcupadas()
+    }
   },
   {
     id: 4,
@@ -399,7 +443,11 @@ export const PROFESSIONALS: Professional[] = [
           'Manejo de escombros'
         ]
       }
-    ]
+    ],
+    disponibilidad: {
+      horariosDisponibles: generarHorariosDisponibles(),
+      citasOcupadas: generarCitasOcupadas()
+    }
   },
   {
     id: 5,
@@ -499,7 +547,11 @@ export const PROFESSIONALS: Professional[] = [
           'Garantía extendida'
         ]
       }
-    ]
+    ],
+    disponibilidad: {
+      horariosDisponibles: generarHorariosDisponibles(),
+      citasOcupadas: generarCitasOcupadas()
+    }
   },
   {
     id: 6,
@@ -599,6 +651,10 @@ export const PROFESSIONALS: Professional[] = [
           'Garantía de instalación'
         ]
       }
-    ]
+    ],
+    disponibilidad: {
+      horariosDisponibles: generarHorariosDisponibles(),
+      citasOcupadas: generarCitasOcupadas()
+    }
   }
 ];

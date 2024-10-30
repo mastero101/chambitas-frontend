@@ -19,6 +19,7 @@ export class ChatComponent {
   messages: any[] = [];
   newMessage: string = '';
   isMinimized: boolean = false;
+  unreadMessages = 0;
 
   ngOnInit() {
     // Mensaje de bienvenida automático
@@ -50,9 +51,18 @@ export class ChatComponent {
 
   toggleMinimize() {
     this.isMinimized = !this.isMinimized;
+    if (!this.isMinimized) {
+      this.unreadMessages = 0;
+    }
   }
 
   closeChat() {
     this.close.emit();
+  }
+
+  onNewMessage() {
+    if (this.isMinimized) {
+      this.unreadMessages++;
+    }
   }
 }

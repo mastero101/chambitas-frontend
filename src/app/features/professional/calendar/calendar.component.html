@@ -1,0 +1,68 @@
+<div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">Agendar Cita</h2>
+      <button (click)="cerrar.emit()" class="text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Calendario -->
+      <div class="bg-gray-50 p-4 rounded-lg">
+        <mat-calendar 
+          [(selected)]="fechaSeleccionada"
+          (selectedChange)="onFechaSeleccionada($event)"
+          [dateFilter]="filtrarDiasDisponibles"
+          [dateClass]="fechaClass">
+        </mat-calendar>
+        
+        <!-- Leyenda -->
+        <div class="mt-4 text-sm">
+          <div class="flex items-center gap-2">
+            <div class="w-4 h-4 bg-green-200 rounded"></div>
+            <span>Disponible</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-4 h-4 bg-red-200 rounded"></div>
+            <span>No disponible</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Horarios disponibles -->
+      <div *ngIf="fechaSeleccionada" class="space-y-4 overflow-y-auto max-h-[400px]">
+        <h3 class="font-semibold text-lg sticky top-0 bg-white py-2">Horarios disponibles</h3>
+        <div class="grid grid-cols-2 gap-2">
+          <button 
+            *ngFor="let hora of horasDisponibles"
+            (click)="seleccionarHora(hora)"
+            class="p-2 text-center rounded-lg border"
+            [class.bg-blue-500]="horaSeleccionada === hora"
+            [class.text-white]="horaSeleccionada === hora"
+            [class.border-blue-500]="horaSeleccionada === hora"
+            [class.border-gray-200]="horaSeleccionada !== hora">
+            {{hora}}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón de confirmación - Fijo en la parte inferior -->
+    <div class="mt-6 sticky bottom-0 bg-white pt-4">
+      <button 
+        *ngIf="fechaSeleccionada && horaSeleccionada"
+        (click)="confirmarReservacion()"
+        class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 
+               disabled:bg-gray-400 disabled:cursor-not-allowed
+               flex items-center justify-center gap-2">
+        <i class="fas fa-calendar-check"></i>
+        Confirmar Reservación
+      </button>
+
+      <!-- Mensaje de éxito -->
+      <div *ngIf="reservacionExitosa" 
+           class="mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+        <p class="text-center">¡Reservación confirmada exitosamente!</p>
+      </div>
+    </div>
+  </div>

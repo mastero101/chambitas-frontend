@@ -16,6 +16,21 @@ export interface Certification {
   imageUrl?: string;
 }
 
+interface Disponibilidad {
+  horariosDisponibles: {
+    dia: string;
+    horaInicio: string;
+    horaFin: string;
+  }[];
+  citasOcupadas: {
+    fecha: Date;
+    horaInicio: string;
+    duracion: number;
+    servicio: string;
+    estado: string;
+  }[];
+}
+
 export interface Professional {
   id: number;
   name: string;
@@ -33,6 +48,11 @@ export interface Professional {
   reviews: Review[];
   certifications: Certification[];
   servicios: Servicio[];
+  disponibilidad: Disponibilidad;
+  citasOcupadas?: Array<{
+    fecha: Date;
+    hora: string;
+  }>;
 }
 
 export interface Experience {

@@ -3,6 +3,7 @@ import { CommonModule, Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Professional } from '@core/models/professional.interface';
 import { ChatComponent } from '../../chat/chat.component';
+import { CalendarComponent } from '../calendar/calendar.component';
 
 interface Servicio {
   nombre: string;
@@ -16,7 +17,8 @@ interface Servicio {
   standalone: true,
   imports: [
     CommonModule,
-    ChatComponent
+    ChatComponent,
+    CalendarComponent
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
@@ -24,6 +26,7 @@ interface Servicio {
 export class ProfileComponent implements OnInit {
   professional: Professional | null = null;
   showChat = false;
+  mostrandoCalendario = false;
 
   constructor(
     private location: Location,
@@ -78,5 +81,19 @@ export class ProfileComponent implements OnInit {
   solicitarServicio(servicio: Servicio) {
     // Implementar lógica para solicitar el servicio
     console.log('Servicio solicitado:', servicio);
+  }
+
+  mostrarCalendario(): void {
+    this.mostrandoCalendario = true;
+  }
+
+  cerrarCalendario(): void {
+    this.mostrandoCalendario = false;
+  }
+
+  confirmarCita(evento: {fecha: Date, hora: string}): void {
+    console.log('Cita confirmada:', evento);
+    // Aquí implementarías la lógica para guardar la cita
+    this.cerrarCalendario();
   }
 }
